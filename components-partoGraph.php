@@ -484,6 +484,9 @@
     </style>
 </head>
 <body>
+  <form method="POST" action="record-partoGraph.php">
+
+  
     <div class="container">
         <h1>Partograph</h1>
         
@@ -518,12 +521,12 @@
             </tr>
             <!-- Add rows for each observation -->
             <tr>
-                <td><input type="text" name="time_1"></td>
-                <td><input type="text" name="dilatation_1"></td>
-                <td><input type="text" name="contractions_1"></td>
-                <td><input type="text" name="fetal_heart_rate_1"></td>
-                <td><input type="text" name="membranes_1"></td>
-                <td><input type="text" name="remarks_1"></td>
+                <td><input type="text" name="time"></td>
+                <td><input type="text" name="dilatation"></td>
+                <td><input type="text" name="contractions"></td>
+                <td><input type="text" name="fetal_heart_rate"></td>
+                <td><input type="text" name="membranes"></td>
+                <td><input type="text" name="remarks"></td>
             </tr>
             <!-- Add more rows for additional observations -->
         </table>
@@ -545,7 +548,9 @@
             </tr>
             <!-- Add more additional information as needed -->
         </table>
+        <button type="submit">Submit</button>
     </div>
+  </form>
 </body>
 </html>
 
