@@ -1,3 +1,13 @@
+
+  
+ 
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -439,7 +449,70 @@
       </nav>
     </div><!-- End Page Title -->
 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-up Appointment Form</title>
+    <style>
+        .con {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <form action="record-checkUp.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Put a name!!"><br><br>
 
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="phonenumber">Phone Number:</label>
+            <input type="tel" id="phone" name="phone_number" required><br><br>
+
+            <label for="date">Preferred Date:</label>
+            <input type="date" id="date" name="date" required><br><br>
+
+            <label for="time">Preferred Time:</label>
+            <input type="time" id="time" name="time" required><br><br>
+
+            <label for="time">Type of Check Up</label>
+            <input type="text" id="type" name="type" required><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
 
 
 

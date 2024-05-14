@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - Five Star Birthing Home </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -36,6 +36,29 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <!-- Add this style block inside the <head> tag of your HTML document -->
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+</style>
+
 </head>
 
 <body>
@@ -218,7 +241,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>Admin</h6>
-              <span></span>
+              
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -245,7 +268,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+              <a class="dropdown-item d-flex align-items-center" href="pages-faq.php">
                 <i class="bi bi-question-circle"></i>
                 <span>Need Help?</span>
               </a>
@@ -275,27 +298,26 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link " href="index.html">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
+      
       <li class="nav-item">
-        <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Patients Registration</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="components-chart.php">
               <i class="bi bi-circle"></i><span>Charts</span>
             </a>
           </li>
           <li>
-            <a href="components-prenatal.php"class="active">
+            <a href="components-prenatal.php">
               <i class="bi bi-circle"></i><span>Prenatal</span>
             </a>
-            
           </li>
           <li>
             <a href="components-postnatal.php">
@@ -355,15 +377,13 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Tables Nav -->
-
-      
+      </li><!-- End Transfer Refferal Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link " data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-bar-chart"></i><span>Records</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="charts-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
           <li>
             <a href="record-chart.php">
               <i class="bi bi-circle"></i><span>Charts</span>
@@ -381,7 +401,7 @@
           </li>
           <li>
             <a href="record-admission-slip.php">
-              <i class="bi bi-circle"></i><span>Addmission Slip</span>
+              <i class="bi bi-circle"></i><span>Admission Slip</span>
             </a>
           </li>
           <li>
@@ -394,8 +414,14 @@
               <i class="bi bi-circle"></i><span>PartoGraph</span>
             </a>
           </li>
+          <li>
+            <a href="record-checkUp.php" class="active">
+              <i class="bi bi-circle"></i><span>Check Ups</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Charts Nav -->
+
 
       <li class="nav-heading">Pages</li>
 
@@ -405,6 +431,7 @@
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-contact.php">
@@ -428,6 +455,7 @@
       </li><!-- End Login Page Nav -->
 
 
+
     </ul>
 
   </aside><!-- End Sidebar-->
@@ -435,159 +463,24 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 style="text-align:left;">Prenatal</h1>
+      <h1>Check Ups</h1>
       <nav>
-        <ol class="breadcrumb">
+      <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Patients Registration</li>
-          <li class="breadcrumb-item active">Prenatal</li>
+          <li class="breadcrumb-item">Records</li>
+          <li class="breadcrumb-item active">Check Ups</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-  </main><!-- End #main -->
-
- 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        p {
-            margin-bottom: 10px;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section-header {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        input[type="text"],
-        input[type="number"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-    </style>
-</head>
-<body>
-  <form method="POST" action="record-prenatal.php">
-    <div class="container">
-        <h1>Prenatal Form</h1>
-        
-        <!-- Personal Information Section -->
-        <div class="section">
-            <h2 class="section-header">Personal Information:</h2>
-            <label for="full-name">Full Name:</label>
-            <input type="text" id="full_name" name="full_name" >
-            
-            <label for="date-of-birth">Date of Birth:</label>
-            <input type="text" id="date_of_birth" name="date_of_birth" >
-            
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address">
-            
-            <label for="phone-number">Phone Number:</label>
-            <input type="text" id="phone_number" name="phone_number">
-            
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" >
-        </div>
-        
-        <!-- Pregnancy Information Section -->
-        <div class="section">
-            <h2 class="section-header">Pregnancy Information:</h2>
-            <label for="gestational-age">Gestational Age (weeks):</label>
-            <input type="number" id="gestational_age" name="gestational_age" >
-            
-            <label for="due-date">Estimated Due Date:</label>
-            <input type="text" id="due_date" name="due_date" >
-            
-            <label for="pregnancy-history">Pregnancy History:</label>
-            <textarea id="pregnancy_history" name="pregnancy_history" rows="4"></textarea>
-            
-            <label for="prenatal-vitamins">Prenatal Vitamins Taken:</label>
-            <select id="prenatal_vitamins" name="prenatal_vitamins" >
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="nuhhhh">No</option>
-            </select>
-        </div>
-        
-        <!-- Medical History Section -->
-        <div class="section">
-            <h2 class="section-header">Medical History:</h2>
-            <label for="medical-conditions">Existing Medical Conditions:</label>
-            <textarea id="medical_conditions" name="medical_conditions" rows="4"></textarea>
-            
-            <label for="medications">Current Medications:</label>
-            <textarea id="medications" name="medications" rows="4"></textarea>
-            
-            <label for="allergies">Allergies:</label>
-            <textarea id="allergies" name="allergies" rows="4"></textarea>
-        </div>
-        
-        <!-- Lifestyle and Habits Section -->
-        <div class="section">
-            <h2 class="section-header">Lifestyle and Habits:</h2>
-            <label for="smoking">Smoking (yes/no):</label>
-            <select id="smoking" name="smoking">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-            
-            <label for="alcohol">Alcohol Consumption (yes/no):</label>
-            <select id="alcohol" name="alcohol">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-            
-            <label for="exercise">Exercise Routine:</label>
-            <textarea id="exercise" name="exercise" rows="4" ></textarea>
-        </div>
-        <button type="submit">Submit</button>
-
-        
-        <!-- Note Section -->
-
-      </div>
-    </form>
-</body>
-</html>
 
 
 
-
-  
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-     
-    <div class="credits">
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      
+       <a href="https://bootstrapmade.com/"></a>
     </div>
   </footer><!-- End Footer -->
 
@@ -609,3 +502,96 @@
 </body>
 
 </html>
+
+<?php
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "fivestardb";
+ 
+  //create connection
+  $connection = new mysqli($servername, $username, $password, $database);
+
+  //check connection
+  if($connection->connect_error){
+    die("Connection failed:" .$connection->connect_error);
+  }
+
+  //read all row from database table
+  $sql = "SELECT * FROM checkups";
+  $result = $connection->query($sql);
+
+  if(!$result){
+    die("Invalid Query:". $connection->error);
+  }
+
+    echo "<table>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Type of Check Up</th>
+               
+            </tr>";
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+                <td>".$row['id']."</td>
+                <td>".$row['name']."</td>
+                <td>".$row['email']."</td>
+                <td>".$row['phone_number']."</td>
+                <td>".$row['date']."</td>
+                <td>".$row['time']."</td>
+                <td>".$row['type']."</td>
+                <td>
+                  <a class='btn' href = 'edit.php?id=$row[id]'> Edit </a>
+                  <a class='btn' href = 'delete.php?id=$row[id]'> Delete </a>
+                <td/>
+    
+              </tr>";
+    }
+    echo "</table>";
+
+// Close database connection
+
+?>
+<?php
+$name = "";
+$email = "";
+$phone_number = "";
+$date = "";
+$time = "";
+$type = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Retrieve data from the form
+  
+  $name= $_POST["name"];
+  $email = $_POST["email"];
+  $phone_number = $_POST["phone_number"];
+  $date = $_POST["date"];
+  $time = $_POST["time"];
+  $type = $_POST["type"];
+
+  do{
+    if(empty($name) || empty($email) || empty($phone_number) || empty($date) || empty($time) || empty($type) ){
+      $errorMessage = "All the fields are required";
+      break;
+    }
+
+    $sql = "INSERT INTO checkups (name, email, phone_number, date, time, type)" . 
+      "VALUES ('$name', '$email', '$phone_number', '$date', '$time', '$type' )";
+
+      $result = $connection->query($sql);
+
+      if(!$result){
+        $errorMessage = "Invalid Query: ". $connection->error;
+      }
+
+      
+    }while(false);
+  
+  }
+  ?>

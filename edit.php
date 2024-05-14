@@ -1,3 +1,83 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "fivestardb";
+
+// Create connection
+$connection = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+
+$id = "";
+$name = "";
+$email = "";
+$phone_number = "";
+$date = "";
+$time = "";
+$type = "";
+$errorMessage = "";
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (!isset($_GET["id"])) {
+        header("Location: record-checkUp.php");
+        exit;
+    }
+
+    $id = $_GET["id"];
+
+    // Read row from database table
+    $sql = "SELECT * FROM checkups WHERE id=?";
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $name = $row["name"];
+        $email = $row["email"];
+        $phone_number = $row["phone_number"];
+        $date = $row["date"];
+        $time = $row["time"];
+        $type = $row["type"];
+    } else {
+        header("Location: record-checkUp.php");
+        exit;
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id = $_POST["id"];
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $phone_number = $_POST["phone_number"];
+    $date = $_POST["date"];
+    $time = $_POST["time"];
+    $type = $_POST["type"];
+
+    // Basic validation
+    if (empty($name) || empty($email) || empty($phone_number) || empty($date) || empty($time) || empty($type)) {
+        $errorMessage = "All fields are required";
+    } else {
+        // Update record in database
+        $sql = "UPDATE checkups SET name=?, email=?, phone_number=?, date=?, time=?, type=? WHERE id=?";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("ssssssi", $name, $email, $phone_number, $date, $time, $type, $id);
+        if ($stmt->execute()) {
+            header("Location: record-checkUp.php");
+            exit;
+        } else {
+            $errorMessage = "Error updating record: " . $connection->error;
+        }
+    }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +85,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+  <title>Forms / Elements - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -225,7 +305,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -235,7 +315,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -244,13 +324,7 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Need Help?</span>
-              </a>
-            </li>
-            <li>
+           
               <hr class="dropdown-divider">
             </li>
 
@@ -282,38 +356,37 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Patients Registration</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-chart.php">
+            <a href="components-chart.html">
               <i class="bi bi-circle"></i><span>Charts</span>
             </a>
           </li>
           <li>
-            <a href="components-prenatal.php"class="active">
+            <a href="components-prenatal.html">
               <i class="bi bi-circle"></i><span>Prenatal</span>
             </a>
-            
           </li>
           <li>
-            <a href="components-postnatal.php">
+            <a href="components-Postnatal.html">
               <i class="bi bi-circle"></i><span>Postnatal</span>
             </a>
           </li>
           <li>
-            <a href="components-admission-slip.php">
-              <i class="bi bi-circle"></i><span>Admission Slip</span>
+            <a href="components-AddmissionSlip.html">
+              <i class="bi bi-circle"></i><span>Addmission Slip</span>
             </a>
           </li>
           <li>
-            <a href="components-discharge-slip.php">
+            <a href="components-DischargeSlip.html">
               <i class="bi bi-circle"></i><span>Discharge Slip</span>
             </a>
           </li>
           <li>
-            <a href="components-partoGraph.php">
+            <a href="components-PartoGraph.html">
               <i class="bi bi-circle"></i><span>PartoGraph</span>
             </a>
           </li>
@@ -322,13 +395,13 @@
 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link " data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Appointment Scheduling</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="forms-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-CheckUps.php">
-              <i class="bi bi-circle"></i><span>Check Ups</span>
+            <a href="forms-CheckUps.php" class="active">
+              <i class="bi bi-circle"></i><span>Check Up</span>
             </a>
           </li>
           <li>
@@ -342,7 +415,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Appointment Scheduling Nav -->
+      </li><!-- End Forms Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -355,7 +428,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Tables Nav -->
+      </li><!-- End Transfer Refferal Nav -->
 
       
 
@@ -381,7 +454,7 @@
           </li>
           <li>
             <a href="record-admission-slip.php">
-              <i class="bi bi-circle"></i><span>Addmission Slip</span>
+              <i class="bi bi-circle"></i><span>Admission Slip</span>
             </a>
           </li>
           <li>
@@ -405,6 +478,7 @@
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-contact.php">
@@ -435,51 +509,37 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1 style="text-align:left;">Prenatal</h1>
+      <h1>Check Ups</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Patients Registration</li>
-          <li class="breadcrumb-item active">Prenatal</li>
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item">Appointment Scheduling</li>
+          <li class="breadcrumb-item active">Check Ups</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-  </main><!-- End #main -->
-
- 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check-up Appointment Form</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+        .con {
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        p {
-            margin-bottom: 10px;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section-header {
-            font-weight: bold;
-            margin-bottom: 10px;
+        label {
+            display: block;
+            margin-bottom: 5px;
         }
         input[type="text"],
-        input[type="number"],
-        select,
-        textarea {
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        input[type="submit"] {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -487,108 +547,50 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-  <form method="POST" action="record-prenatal.php">
-    <div class="container">
-        <h1>Prenatal Form</h1>
-        
-        <!-- Personal Information Section -->
-        <div class="section">
-            <h2 class="section-header">Personal Information:</h2>
-            <label for="full-name">Full Name:</label>
-            <input type="text" id="full_name" name="full_name" >
-            
-            <label for="date-of-birth">Date of Birth:</label>
-            <input type="text" id="date_of_birth" name="date_of_birth" >
-            
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address">
-            
-            <label for="phone-number">Phone Number:</label>
-            <input type="text" id="phone_number" name="phone_number">
-            
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" >
-        </div>
-        
-        <!-- Pregnancy Information Section -->
-        <div class="section">
-            <h2 class="section-header">Pregnancy Information:</h2>
-            <label for="gestational-age">Gestational Age (weeks):</label>
-            <input type="number" id="gestational_age" name="gestational_age" >
-            
-            <label for="due-date">Estimated Due Date:</label>
-            <input type="text" id="due_date" name="due_date" >
-            
-            <label for="pregnancy-history">Pregnancy History:</label>
-            <textarea id="pregnancy_history" name="pregnancy_history" rows="4"></textarea>
-            
-            <label for="prenatal-vitamins">Prenatal Vitamins Taken:</label>
-            <select id="prenatal_vitamins" name="prenatal_vitamins" >
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="nuhhhh">No</option>
-            </select>
-        </div>
-        
-        <!-- Medical History Section -->
-        <div class="section">
-            <h2 class="section-header">Medical History:</h2>
-            <label for="medical-conditions">Existing Medical Conditions:</label>
-            <textarea id="medical_conditions" name="medical_conditions" rows="4"></textarea>
-            
-            <label for="medications">Current Medications:</label>
-            <textarea id="medications" name="medications" rows="4"></textarea>
-            
-            <label for="allergies">Allergies:</label>
-            <textarea id="allergies" name="allergies" rows="4"></textarea>
-        </div>
-        
-        <!-- Lifestyle and Habits Section -->
-        <div class="section">
-            <h2 class="section-header">Lifestyle and Habits:</h2>
-            <label for="smoking">Smoking (yes/no):</label>
-            <select id="smoking" name="smoking">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-            
-            <label for="alcohol">Alcohol Consumption (yes/no):</label>
-            <select id="alcohol" name="alcohol">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-            
-            <label for="exercise">Exercise Routine:</label>
-            <textarea id="exercise" name="exercise" rows="4" ></textarea>
-        </div>
-        <button type="submit">Submit</button>
-
-        
-        <!-- Note Section -->
-
-      </div>
+    <div class="con">
+    <form method="post">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <label>Name:</label><br>
+        <input type="text" name="name" value="<?php echo $name; ?>"><br>
+        <label>Email:</label><br>
+        <input type="email" name="email" value="<?php echo $email; ?>"><br>
+        <label>Phone Number:</label><br>
+        <input type="text" name="phone_number" value="<?php echo $phone_number; ?>"><br>
+        <label>Date:</label><br>
+        <input type="date" name="date" value="<?php echo $date; ?>"><br>
+        <label>Time:</label><br>
+        <input type="time" name="time" value="<?php echo $time; ?>"><br>
+        <label>Type:</label><br>
+        <input type="text" name="type" value="<?php echo $type; ?>"><br>
+        <input type="submit" value="Submit"><br>
+        <span style="color: red;"><?php echo $errorMessage; ?></span>
     </form>
+    </div>
 </body>
 </html>
 
 
 
+  </main><!-- End #main -->
 
-  
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-     
-    <div class="credits">
+ 
       <!-- All the links in the footer should remain intact. -->
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      
-    </div>
+     
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
